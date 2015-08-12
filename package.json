@@ -1,0 +1,34 @@
+{
+  "name": "csrf-login",
+  "version": "1.0.0",
+  "description": "Login from command line to the websites that use CSRF protection",
+  "main": "csrf-login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/csrf-login.git"
+  },
+  "keywords": [
+    "login",
+    "cli",
+    "command",
+    "line",
+    "csrf",
+    "token",
+    "test",
+    "utility"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/csrf-login/issues"
+  },
+  "homepage": "https://github.com/bahmutov/csrf-login#readme",
+  "dependencies": {
+    "check-more-types": "1.8.2",
+    "first-existing": "1.0.0",
+    "lazy-ass": "0.5.8"
+  }
+}
