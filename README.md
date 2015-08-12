@@ -2,6 +2,16 @@
 
 > Login from command line to the websites that use CSRF protection
 
+CSRF tokens are a good security practice. A login form page contains a hidden input
+field that is sent together with the username / password pair. The server checks if
+the sent data contains the valid CSRF field before trying to authenticate the user.
+
+    <form method="POST" action="/login/" id="loginform">
+        <input type="hidden" name="csrfmiddlewaretoken" value="<long random hash>"" />
+        <input type="email" name="email" />
+        <input type="password" name="password" />
+    </form>
+
 [![NPM][csrf-login-icon] ][csrf-login-url]
 
 [![Build status][csrf-login-ci-image] ][csrf-login-ci-url]
@@ -49,3 +59,12 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
+
+[csrf-login-icon]: https://nodei.co/npm/csrf-login.png?downloads=true
+[csrf-login-url]: https://npmjs.org/package/csrf-login
+[csrf-login-ci-image]: https://travis-ci.org/bahmutov/csrf-login.png?branch=master
+[csrf-login-ci-url]: https://travis-ci.org/bahmutov/csrf-login
+[csrf-login-dependencies-image]: https://david-dm.org/bahmutov/csrf-login.png
+[csrf-login-dependencies-url]: https://david-dm.org/bahmutov/csrf-login
+[csrf-login-devdependencies-image]: https://david-dm.org/bahmutov/csrf-login/dev-status.png
+[csrf-login-devdependencies-url]: https://david-dm.org/bahmutov/csrf-login#info=devDependencies

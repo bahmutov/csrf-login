@@ -2,9 +2,9 @@
   "name": "csrf-login",
   "version": "1.0.0",
   "description": "Login from command line to the websites that use CSRF protection",
-  "main": "csrf-login.js",
+  "main": "src/csrf-login.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,31 @@
   },
   "homepage": "https://github.com/bahmutov/csrf-login#readme",
   "dependencies": {
+    "bluebird": "2.9.34",
     "check-more-types": "1.8.2",
+    "cheerio": "0.19.0",
     "first-existing": "1.0.0",
-    "lazy-ass": "0.5.8"
+    "inquirer": "0.9.0",
+    "lazy-ass": "0.5.8",
+    "nconf": "0.7.2",
+    "request": "2.60.0"
+  },
+  "devDependencies": {
+    "eslint": "1.1.0",
+    "pre-git": "0.6.2"
+  },
+  "pre-commit": "npm test",
+  "post-commit": "npm version",
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-unused-expressions": 2,
+      "no-undef": 2
+    },
+    "globals": {
+      "la": true
+    }
   }
 }
