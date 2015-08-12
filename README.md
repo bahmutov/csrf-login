@@ -2,6 +2,14 @@
 
 > Login from command line to the websites that use CSRF protection
 
+[![NPM][csrf-login-icon] ][csrf-login-url]
+
+[![Build status][csrf-login-ci-image] ][csrf-login-ci-url]
+[![dependencies][csrf-login-dependencies-image] ][csrf-login-dependencies-url]
+[![devdependencies][csrf-login-devdependencies-image] ][csrf-login-devdependencies-url]
+
+## Why
+
 CSRF tokens are a good security practice. A login form page contains a hidden input
 field that is sent together with the username / password pair. The server checks if
 the sent data contains the valid CSRF field before trying to authenticate the user.
@@ -12,13 +20,40 @@ the sent data contains the valid CSRF field before trying to authenticate the us
         <input type="password" name="password" />
     </form>
 
-[![NPM][csrf-login-icon] ][csrf-login-url]
+There are two components to the protection: the hidden input value and a cookie. In order to
+successfully execute requests, for example the login POST, one needs to fetch the login page,
+grab the middleware token and use it to form the valid POST request, plus use the same value
+as a cookie when making the POST request!
 
-[![Build status][csrf-login-ci-image] ][csrf-login-ci-url]
-[![dependencies][csrf-login-dependencies-image] ][csrf-login-dependencies-url]
-[![devdependencies][csrf-login-devdependencies-image] ][csrf-login-devdependencies-url]
+**csrf-login** allows you to login from command line to websites that use CSRF token protection.
 
-Install and use under Node: `npm install csrf-login --save`
+Install and use under Node: `npm install csrf-login --save`.
+Create a new file `csrf.json` in the current working folder, place custom parameters into this
+configuration file. For example,
+
+```json
+{
+  "host": "http://my-dev-server:3000",
+  "loginFormId": "loginform",
+  "tokenFieldName": "csrfmiddlewaretoken",
+  "loginPath": "/accounts/login/"
+}
+```
+
+You can take a look at the defaults in [src/defaults.json](src/defaults.json)
+
+From your code use the function
+
+```js
+var csrfLogin = require('csrf-login');
+csrfLogin()
+  .then(function (info) {
+    // info = { request, response };
+    info.request('/api/foo', { some: params })
+        .then(function (data) { ... });
+```
+
+During `csrfLogin` the system will ask for email and password to login.
 
 ### Small print
 
