@@ -48,12 +48,13 @@ From your code use the function
 var csrfLogin = require('csrf-login');
 csrfLogin()
   .then(function (info) {
-    // info = { request, response };
-    info.request('/api/foo', { some: params })
+    // info = { request, requestAsync, response };
+    info.requestAsync('/api/foo', { some: params })
         .then(function (data) { ... });
 ```
 
-During `csrfLogin` the system will ask for email and password to login.
+During `csrfLogin` the system will ask for email and password to login, unless you pass username and password
+as options to `csrfLogin(options)`
 
 ### Small print
 

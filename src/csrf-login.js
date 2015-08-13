@@ -71,6 +71,17 @@ function csrfLogin() {
       followRedirect: true
     };
 
+    function requestAsync(options) {
+      return new Promise(function (resolve, reject) {
+        request(options, function (error, response) {
+          if (error) {
+            return reject(error);
+          }
+          resolve(response);
+        });
+      });
+    }
+
     return new Promise(function (resolve, reject) {
       request.post(options, function (error, response, body) {
         if (error) {
@@ -79,6 +90,7 @@ function csrfLogin() {
         }
         resolve({
           request: request,
+          requestAsync: requestAsync,
           response: response
         });
       });
