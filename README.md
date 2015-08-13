@@ -56,6 +56,43 @@ csrfLogin()
 During `csrfLogin` the system will ask for email and password to login, unless you pass username and password
 as options to `csrfLogin(options)`
 
+The returned object `info` has 3 properties
+
+**response** - the response from the login call
+
+**request** - the [request](https://www.npmjs.com/package/request) function you can use
+to execute other API calls (the session cookie is set for example)
+
+```js
+csrfLogin()
+  .then(function (info) {
+    info.request('/some/other/end/point', function (error, response, body) {
+
+    });
+  });
+```
+
+If you want to use promises instead of callbacks, use the `requestAsync` property
+
+**requestAsync** - same [request](https://www.npmjs.com/package/request) object, but wrapped
+in a promise-returning function. For example to make another API JSON request
+
+```js
+csrfLogin()
+  .then(function (info) {
+    return info.requestAsync({
+      url: '/some/data/api',
+      json: true
+    });
+  })
+  .then(function (data) {
+    console.log('got data from /some/data/api');
+    console.log(data);
+  })
+  .catch(onError)
+  .done();
+```
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
