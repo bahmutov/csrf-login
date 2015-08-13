@@ -10,8 +10,15 @@ var request = require('request');
 var Promise = require('bluebird');
 
 function csrfLogin(options) {
-
   options = options || {};
+
+  var username = options.email || options.username;
+  if (!username) {
+    return Promise.reject('Missing username');
+  }
+  if (!options.password) {
+    return Promise.reject('Missing password for ' + options);
+  }
 
   var jar = request.jar();
   request = request.defaults({
@@ -57,6 +64,12 @@ function csrfLogin(options) {
 
   function login(csrfInfo, answers) {
     var username = answers.email || answers.username;
+    if (!username) {
+      return Promise.reject('Missing username');
+    }
+    if (!answers.password) {
+      return Promise.reject('Missing password for ' + username);
+    }
     console.log('trying to login %s', username);
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
@@ -100,24 +113,6 @@ function csrfLogin(options) {
     });
   }
 
-  function loginUser(url) {
-    var inq = require('inquirer');
-
-    var questions = [{
-      name: 'email',
-      type: 'input',
-      message: 'your email'
-    }, {
-      name: 'password',
-      type: 'password',
-      message: 'your password'
-    }];
-
-    return new Promise(function (resolve) {
-      inq.prompt(questions, resolve);
-    });
-  }
-
   var loginUrl = conf.get('loginPath');
   return getCsrf(loginUrl)
     .tap(function (form) {
@@ -127,14 +122,10 @@ function csrfLogin(options) {
       console.log('Login to %s %s', host, loginUrl);
       var username = options.username || options.email;
       var password = options.password;
-      if (username && password) {
-        return login(form, {
-          username: username,
-          password: password
-        });
-      }
-      return loginUser(loginUrl)
-        .then(login.bind(null, form));
+      return login(form, {
+        username: username,
+        password: password
+      });
     });
 }
 

@@ -46,15 +46,17 @@ From your code use the function
 
 ```js
 var csrfLogin = require('csrf-login');
-csrfLogin()
-  .then(function (info) {
+csrfLogin({
+    username: username,
+    password: password
+  }).then(function (info) {
     // info = { request, requestAsync, response };
     info.requestAsync('/api/foo', { some: params })
         .then(function (data) { ... });
 ```
 
-During `csrfLogin` the system will ask for email and password to login, unless you pass username and password
-as options to `csrfLogin(options)`
+To get username and password from the user, you can use 
+[get-username-and-password](https://github.com/bahmutov/get-username-and-password).
 
 The returned object `info` has 3 properties
 
