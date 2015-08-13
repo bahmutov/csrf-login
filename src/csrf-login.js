@@ -13,7 +13,8 @@ function csrfLogin() {
 
   var jar = request.jar();
   request = request.defaults({
-    jar: jar
+    jar: jar,
+    baseUrl: host
   });
   request.__jar = jar;
 
@@ -57,7 +58,7 @@ function csrfLogin() {
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
 
-    var loginUrl = host + csrfInfo.url;
+    var loginUrl = csrfInfo.url;
     var form = {};
     form[csrfInfo.csrfName] = csrfInfo.csrf;
     form.email = answers.email;
@@ -97,13 +98,13 @@ function csrfLogin() {
       message: 'your password'
     }];
 
-    console.log('Login to', loginUrl);
+    console.log('Login to %s %s', host, loginUrl);
     return new Promise(function (resolve) {
       inq.prompt(questions, resolve);
     });
   }
 
-  var loginUrl = host + conf.get('loginPath');
+  var loginUrl = conf.get('loginPath');
   return getCsrf(loginUrl)
     .tap(function (form) {
       console.log('found csrf toke', form);
