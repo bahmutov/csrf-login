@@ -1,6 +1,6 @@
 {
   "name": "csrf-login",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Login from command line to the websites that use CSRF protection",
   "main": "src/csrf-login.js",
   "scripts": {

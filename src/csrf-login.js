@@ -9,7 +9,9 @@ var join = require('path').join;
 var request = require('request');
 var Promise = require('bluebird');
 
-function csrfLogin() {
+function csrfLogin(options) {
+
+  options = options || {};
 
   var jar = request.jar();
   request = request.defaults({
@@ -54,14 +56,15 @@ function csrfLogin() {
   }
 
   function login(csrfInfo, answers) {
-    console.log('trying to login', answers.email);
+    var username = answers.email || answers.username;
+    console.log('trying to login %s', username);
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
 
     var loginUrl = csrfInfo.url;
     var form = {};
     form[csrfInfo.csrfName] = csrfInfo.csrf;
-    form.email = answers.email;
+    form.email = username;
     form.password = answers.password;
 
     request.__jar.setCookie(request.cookie('csrftoken=' + csrfInfo.csrf), loginUrl);
@@ -110,7 +113,6 @@ function csrfLogin() {
       message: 'your password'
     }];
 
-    console.log('Login to %s %s', host, loginUrl);
     return new Promise(function (resolve) {
       inq.prompt(questions, resolve);
     });
@@ -122,10 +124,17 @@ function csrfLogin() {
       console.log('found csrf toke', form);
     })
     .then(function (form) {
-      return loginUser(loginUrl)
-        .then(function (answers) {
-          return login(form, answers);
+      console.log('Login to %s %s', host, loginUrl);
+      var username = options.username || options.email;
+      var password = options.password;
+      if (username && password) {
+        return login(form, {
+          username: username,
+          password: password
         });
+      }
+      return loginUser(loginUrl)
+        .then(login.bind(null, form));
     });
 }
 
