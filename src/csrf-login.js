@@ -131,4 +131,3 @@ function csrfLogin(options) {
 
 module.exports = csrfLogin;
 
-

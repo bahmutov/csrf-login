@@ -4,7 +4,8 @@
   "description": "Login from command line to the websites that use CSRF protection",
   "main": "src/csrf-login.js",
   "scripts": {
-    "test": "eslint src"
+    "test": "eslint src",
+    "style": "jscs src/*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -37,9 +38,13 @@
   },
   "devDependencies": {
     "eslint": "1.1.0",
+    "jscs": "2.1.0",
     "pre-git": "0.6.2"
   },
-  "pre-commit": "npm test",
+  "pre-commit": [
+    "npm test",
+    "npm run style"
+  ],
   "post-commit": "npm version",
   "eslintConfig": {
     "env": {
