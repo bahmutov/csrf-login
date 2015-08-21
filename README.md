@@ -50,7 +50,7 @@ csrfLogin({
     username: username,
     password: password
 }).then(function (info) {
-  // info = { request, requestAsync, response };
+  // info = { request, requestAsync, response, conf };
   info.requestAsync('/api/foo', { some: params })
       .then(function (data) { });
 });
@@ -94,6 +94,17 @@ csrfLogin()
   })
   .catch(onError)
   .done();
+```
+
+**config** - full configuration object, created from `csrf.json`, environment and
+command line arguments. Uses [nconf](https://www.npmjs.com/package/nconf). One
+can get the `host` for example
+
+```js
+csrfLogin()
+  .then(function (info) {
+    console.log('logged into', info.get('host'));
+  });
 ```
 
 If you need to debug the login process, run the module with debug logging option

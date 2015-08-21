@@ -124,7 +124,8 @@ function csrfLogin(options) {
         resolve({
           request: request,
           requestAsync: requestAsync,
-          response: response
+          response: response,
+          config: conf
         });
       });
     });
