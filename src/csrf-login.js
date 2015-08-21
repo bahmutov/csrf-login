@@ -99,10 +99,14 @@ function csrfLogin(options) {
     }
 
     return new Promise(function (resolve, reject) {
-      request.post(options, function (error, response, body) {
+      request.post(options, function onLoggedIn(error, response, body) {
         if (error) {
           console.error(error);
           return reject(error);
+        }
+        if (response.statusCode === 403) {
+          console.error('Could not login', response.statusCode, response.statusMessage);
+          return reject(new Error(response.statusCode + ': ' + response.statusMessage));
         }
         resolve({
           request: request,
