@@ -52,12 +52,16 @@ function csrfLogin(options) {
         if (!csrf) {
           return reject(new Error('Could not find hidden input for login'));
         }
-        resolve({
+
+        var pageInfo = {
           method: form.attr('method'),
           url: form.attr('action'),
           csrf: csrf,
-          csrfName: CSRF_TOKEN_NAME
-        });
+          csrfName: CSRF_TOKEN_NAME,
+          headers: response.headers
+        };
+        log('login page info', pageInfo);
+        resolve(pageInfo);
       });
 
     });
@@ -85,7 +89,8 @@ function csrfLogin(options) {
     var options = {
       url: loginUrl,
       formData: form,
-      followRedirect: true
+      followRedirect: true,
+      headers: csrfInfo.headers
     };
 
     function requestAsync(options) {
@@ -123,7 +128,7 @@ function csrfLogin(options) {
   var loginUrl = conf.get('loginPath');
   return getCsrf(loginUrl)
     .tap(function (form) {
-      log('found csrf toke', form);
+      log('csrf info', form);
     })
     .then(function (form) {
       log('Login to %s %s', host, loginUrl);
