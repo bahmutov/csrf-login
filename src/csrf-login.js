@@ -78,7 +78,6 @@ function csrfLogin(options) {
     log('trying to login %s', username);
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
-
     var loginUrl = csrfInfo.url;
     var form = {};
     form[csrfInfo.csrfName] = csrfInfo.csrf;
@@ -90,10 +89,14 @@ function csrfLogin(options) {
       url: loginUrl,
       formData: form,
       followRedirect: true,
-      headers: csrfInfo.headers
+      headers: {
+        referer: host
+      }
     };
 
     function requestAsync(options) {
+      log('making async request with options', options);
+
       return new Promise(function (resolve, reject) {
         request(options, function (error, response) {
           if (error) {
@@ -113,6 +116,8 @@ function csrfLogin(options) {
         if (response.statusCode === 403) {
           log('login has received 403');
           log(body);
+          log('original login options', options);
+
           console.error('Could not login', response.statusCode, response.statusMessage);
           return reject(new Error(response.statusCode + ': ' + response.statusMessage));
         }
