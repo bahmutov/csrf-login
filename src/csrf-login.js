@@ -1,6 +1,7 @@
 require('lazy-ass');
 var check = require('check-more-types');
 
+var log = require('debug')('csrf');
 var conf = require('./config');
 var host = conf.get('host');
 la(check.unemptyString(host), 'missing host', host);
@@ -35,7 +36,7 @@ function csrfLogin(options) {
     la(check.unemptyString(CSRF_TOKEN_NAME), 'missing token field name');
 
     return new Promise(function (resolve, reject) {
-      console.log('fetching page', url);
+      log('fetching page', url);
       request(url, function (error, response, body) {
         if (error) {
           return reject(error);
@@ -70,7 +71,7 @@ function csrfLogin(options) {
     if (!answers.password) {
       return Promise.reject('Missing password for ' + username);
     }
-    console.log('trying to login %s', username);
+    log('trying to login %s', username);
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
 
@@ -105,6 +106,8 @@ function csrfLogin(options) {
           return reject(error);
         }
         if (response.statusCode === 403) {
+          log('login has received 403');
+          log(body);
           console.error('Could not login', response.statusCode, response.statusMessage);
           return reject(new Error(response.statusCode + ': ' + response.statusMessage));
         }
@@ -120,10 +123,10 @@ function csrfLogin(options) {
   var loginUrl = conf.get('loginPath');
   return getCsrf(loginUrl)
     .tap(function (form) {
-      console.log('found csrf toke', form);
+      log('found csrf toke', form);
     })
     .then(function (form) {
-      console.log('Login to %s %s', host, loginUrl);
+      log('Login to %s %s', host, loginUrl);
       var username = options.username || options.email;
       var password = options.password;
       return login(form, {

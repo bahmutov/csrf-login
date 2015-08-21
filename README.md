@@ -49,10 +49,10 @@ var csrfLogin = require('csrf-login');
 csrfLogin({
     username: username,
     password: password
-  }).then(function (info) {
+}).then(function (info) {
     // info = { request, requestAsync, response };
     info.requestAsync('/api/foo', { some: params })
-        .then(function (data) { ... });
+        .then(function (data) { });
 ```
 
 To get username and password from the user, you can use 
@@ -94,6 +94,10 @@ csrfLogin()
   .catch(onError)
   .done();
 ```
+
+If you need to debug the login process, run the module with debug logging option
+
+    DEBUG=csrf node client.js
 
 ### Small print
 
