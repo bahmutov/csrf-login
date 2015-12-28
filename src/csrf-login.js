@@ -59,7 +59,7 @@ function csrfLogin(options) {
 
         var pageInfo = {
           method: form.attr('method'),
-          url: form.attr('action'),
+          url: form.attr('action') || url,
           csrf: csrf,
           csrfName: CSRF_TOKEN_NAME,
           headers: response.headers
