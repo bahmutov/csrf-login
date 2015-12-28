@@ -29,8 +29,12 @@ function csrfLogin(options) {
   request.__jar = jar;
 
   function getCsrf(url) {
-    var LOGIN_FORM_ID = conf.get('loginFormId');
-    la(check.unemptyString(LOGIN_FORM_ID), 'missing login form id', LOGIN_FORM_ID);
+    var LOGIN_FORM_SELECTOR = conf.get('loginFormSelector');
+    if (!LOGIN_FORM_SELECTOR) {    
+      var LOGIN_FORM_ID = conf.get('loginFormId');
+      la(check.unemptyString(LOGIN_FORM_ID), 'missing login form id', LOGIN_FORM_ID);
+      LOGIN_FORM_SELECTOR = 'id="' + LOGIN_FORM_ID + '"';
+    }
 
     var CSRF_TOKEN_NAME = conf.get('tokenFieldName');
     la(check.unemptyString(CSRF_TOKEN_NAME), 'missing token field name');
@@ -44,7 +48,7 @@ function csrfLogin(options) {
         // console.log('body', body);
         var cheerio = require('cheerio');
         var $ = cheerio.load(body);
-        var form = $('form[id="' + LOGIN_FORM_ID + '"]');
+        var form = $('form[' + LOGIN_FORM_SELECTOR + ']');
         if (!form) {
           return reject(new Error('Could not find login form'));
         }
