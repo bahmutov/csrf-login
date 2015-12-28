@@ -80,13 +80,16 @@ function csrfLogin(options) {
       return Promise.reject('Missing password for ' + username);
     }
     log('trying to login %s', username);
+    
+    var usernameField = conf.get("loginUsernameField") || "email";
+    var passwordField = conf.get("loginPasswordField") || "password";
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
     var loginUrl = csrfInfo.url;
     var form = {};
     form[csrfInfo.csrfName] = csrfInfo.csrf;
-    form.email = username;
-    form.password = answers.password;
+    form[usernameField] = username;
+    form[passwordField] = answers.password;
 
     request.__jar.setCookie(request.cookie('csrftoken=' + csrfInfo.csrf), loginUrl);
     var options = {
