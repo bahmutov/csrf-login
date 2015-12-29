@@ -51,9 +51,8 @@ csrfLogin({
     password: password
 }).then(function (info) {
   // info = { request, requestAsync, response, conf };
-  info.requestAsync('/api/foo', { some: params })
-      .then(function (data) { });
-});
+  return info.requestAsync('/api/foo', { some: params });      
+}).then(function (data) { });
 ```
 
 To get username and password from the user, you can use 
@@ -70,7 +69,7 @@ to execute other API calls (the session cookie is set for example)
 csrfLogin()
   .then(function (info) {
     info.request('/some/other/end/point', function (error, response, body) {
-
+      //Act on the response...
     });
   });
 ```
