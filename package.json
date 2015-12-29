@@ -1,15 +1,16 @@
 {
   "name": "csrf-login",
-  "version": "1.5.0",
   "description": "Login from command line to the websites that use CSRF protection",
   "main": "src/csrf-login.js",
+  "version": "0.0.0-semantic-release",
   "scripts": {
     "test": "eslint src",
-    "style": "jscs src/*.js --fix"
+    "style": "jscs src/*.js --fix",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bahmutov/csrf-login.git"
+    "url": "https://github.com/bahmutov/csrf-login.git"
   },
   "keywords": [
     "login",
@@ -40,7 +41,8 @@
   "devDependencies": {
     "eslint": "1.1.0",
     "jscs": "2.1.0",
-    "pre-git": "0.6.2"
+    "pre-git": "0.6.2",
+    "semantic-release": "^4.3.5"
   },
   "pre-commit": [
     "npm test",

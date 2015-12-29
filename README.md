@@ -7,6 +7,7 @@
 [![Build status][csrf-login-ci-image] ][csrf-login-ci-url]
 [![dependencies][csrf-login-dependencies-image] ][csrf-login-dependencies-url]
 [![devdependencies][csrf-login-devdependencies-image] ][csrf-login-devdependencies-url]
+[![semantic-release][semantic-image] ][semantic-url]
 
 ## Why
 
@@ -173,3 +174,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 [csrf-login-dependencies-url]: https://david-dm.org/bahmutov/csrf-login
 [csrf-login-devdependencies-image]: https://david-dm.org/bahmutov/csrf-login/dev-status.png
 [csrf-login-devdependencies-url]: https://david-dm.org/bahmutov/csrf-login#info=devDependencies
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release
