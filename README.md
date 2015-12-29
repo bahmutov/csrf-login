@@ -126,6 +126,21 @@ Spread the word: tweet, star on github, etc.
 Support: if you find any problems with this module, email / tweet /
 [open issue](https://github.com/bahmutov/csrf-login/issues) on Github
 
+## Optional Configuration
+
+By default, a form is looked up by Id and the submitted login form fields are expected to be named `email` and `password`. You can override these defaults in the config using the `loginFormSelector`, `loginUsernameField`, and `loginPasswordField`.
+
+```js
+{
+  "host": "http://my-dev-server:3000",
+  "loginFormSelector": "class='myForm'",
+  "loginUsernameField": "username",
+  "loginPasswordField": "userPassword",
+  "tokenFieldName": "csrfmiddlewaretoken",
+  "loginPath": "/accounts/login/"
+}
+```
+
 ## MIT License
 
 Copyright (c) 2015 Gleb Bahmutov
