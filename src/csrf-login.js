@@ -30,7 +30,7 @@ function csrfLogin(options) {
 
   function getCsrf(url) {
     var LOGIN_FORM_SELECTOR = conf.get('loginFormSelector');
-    if (!LOGIN_FORM_SELECTOR) {    
+    if (!LOGIN_FORM_SELECTOR) {
       var LOGIN_FORM_ID = conf.get('loginFormId');
       la(check.unemptyString(LOGIN_FORM_ID), 'missing login form id', LOGIN_FORM_ID);
       LOGIN_FORM_SELECTOR = 'id="' + LOGIN_FORM_ID + '"';
@@ -80,9 +80,9 @@ function csrfLogin(options) {
       return Promise.reject('Missing password for ' + username);
     }
     log('trying to login %s', username);
-    
-    var usernameField = conf.get("loginUsernameField") || "email";
-    var passwordField = conf.get("loginPasswordField") || "password";
+
+    var usernameField = conf.get('loginUsernameField') || 'email';
+    var passwordField = conf.get('loginPasswordField') || 'password';
 
     // need to set BOTH csrftoken cookie and csrfmiddlewaretoken input fields
     var loginUrl = csrfInfo.url;
