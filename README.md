@@ -51,9 +51,8 @@ csrfLogin({
     password: password
 }).then(function (info) {
   // info = { request, requestAsync, response, conf };
-  info.requestAsync('/api/foo', { some: params })
-      .then(function (data) { });
-});
+  return info.requestAsync('/api/foo', { some: params });      
+}).then(function (data) { });
 ```
 
 To get username and password from the user, you can use 
@@ -70,7 +69,7 @@ to execute other API calls (the session cookie is set for example)
 csrfLogin()
   .then(function (info) {
     info.request('/some/other/end/point', function (error, response, body) {
-
+      //Act on the response...
     });
   });
 ```
@@ -125,6 +124,21 @@ Spread the word: tweet, star on github, etc.
 
 Support: if you find any problems with this module, email / tweet /
 [open issue](https://github.com/bahmutov/csrf-login/issues) on Github
+
+## Optional Configuration
+
+By default, a form is looked up by Id and the submitted login form fields are expected to be named `email` and `password`. You can override these defaults in the config using the `loginFormSelector`, `loginUsernameField`, and `loginPasswordField`.
+
+```js
+{
+  "host": "http://my-dev-server:3000",
+  "loginFormSelector": "class='myForm'",
+  "loginUsernameField": "username",
+  "loginPasswordField": "userPassword",
+  "tokenFieldName": "csrfmiddlewaretoken",
+  "loginPath": "/accounts/login/"
+}
+```
 
 ## MIT License
 
