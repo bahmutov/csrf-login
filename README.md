@@ -8,6 +8,7 @@
 [![dependencies][csrf-login-dependencies-image] ][csrf-login-dependencies-url]
 [![devdependencies][csrf-login-devdependencies-image] ][csrf-login-devdependencies-url]
 [![semantic-release][semantic-image] ][semantic-url]
+[![manpm](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
 
 ## Why
 
@@ -28,9 +29,14 @@ as a cookie when making the POST request!
 
 **csrf-login** allows you to login from command line to websites that use CSRF token protection.
 
-Install and use under Node: `npm install csrf-login --save`.
-Create a new file `csrf.json` in the current working folder, place custom parameters into this
-configuration file. For example,
+## Install and use
+
+Install and use under Node
+
+    npm install csrf-login --save
+
+Create a new file `csrf.json` in the current working folder, place the following custom parameters 
+into this configuration file. For example,
 
 ```json
 {
@@ -58,6 +64,8 @@ csrfLogin({
 
 To get username and password from the user, you can use 
 [get-username-and-password](https://github.com/bahmutov/get-username-and-password).
+
+## Returned object
 
 The returned object `info` has 3 properties
 
