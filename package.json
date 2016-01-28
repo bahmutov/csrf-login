@@ -6,7 +6,8 @@
   "scripts": {
     "test": "eslint src",
     "style": "jscs src/*.js --fix",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "issues": "git-issues"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "eslint": "1.1.0",
+    "git-issues": "1.2.0",
     "jscs": "2.1.0",
     "pre-git": "0.6.2",
     "semantic-release": "^4.3.5"

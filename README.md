@@ -67,11 +67,23 @@ To get username and password from the user, you can use
 
 ## Returned object
 
-The returned object `info` has 3 properties
+The returned object `info` has several properties
 
-**response** - the response from the login call
+```js
+csrfLogin(user)
+  .then(function (info) {
+    console.log(Object.keys(info))
+    // [ 'request', 'requestAsync', 'response', 'config' ]
+  })
+```
 
-**request** - the [request](https://www.npmjs.com/package/request) function you can use
+### info.response
+
+This is the response object from the login call
+
+### info.request
+
+The [request](https://www.npmjs.com/package/request) function you can use
 to execute other API calls (the session cookie is set for example)
 
 ```js
@@ -85,7 +97,9 @@ csrfLogin()
 
 If you want to use promises instead of callbacks, use the `requestAsync` property
 
-**requestAsync** - same [request](https://www.npmjs.com/package/request) object, but wrapped
+### info.requestAsync
+
+The same [request](https://www.npmjs.com/package/request) object, but wrapped
 in a promise-returning function. For example to make another API JSON request
 
 ```js
@@ -104,7 +118,9 @@ csrfLogin()
   .done();
 ```
 
-**config** - full configuration object, created from `csrf.json`, environment and
+### info.config
+
+The full configuration object, created from `csrf.json`, environment and
 command line arguments. Uses [nconf](https://www.npmjs.com/package/nconf). One
 can get the `host` for example
 
@@ -115,24 +131,11 @@ csrfLogin()
   });
 ```
 
+## Debugging
+
 If you need to debug the login process, run the module with debug logging option
 
     DEBUG=csrf node client.js
-
-### Small print
-
-Author: Gleb Bahmutov &copy; 2015
-
-* [@bahmutov](https://twitter.com/bahmutov)
-* [glebbahmutov.com](http://glebbahmutov.com)
-* [blog](http://glebbahmutov.com/blog/)
-
-License: MIT - do anything with the code, but don't blame me if it does not work.
-
-Spread the word: tweet, star on github, etc.
-
-Support: if you find any problems with this module, email / tweet /
-[open issue](https://github.com/bahmutov/csrf-login/issues) on Github
 
 ## Optional Configuration
 
@@ -148,6 +151,21 @@ By default, a form is looked up by Id and the submitted login form fields are ex
   "loginPath": "/accounts/login/"
 }
 ```
+
+## Small print
+
+Author: Gleb Bahmutov &copy; 2015
+
+* [@bahmutov](https://twitter.com/bahmutov)
+* [glebbahmutov.com](http://glebbahmutov.com)
+* [blog](http://glebbahmutov.com/blog/)
+
+License: MIT - do anything with the code, but don't blame me if it does not work.
+
+Spread the word: tweet, star on github, etc.
+
+Support: if you find any problems with this module, email / tweet /
+[open issue](https://github.com/bahmutov/csrf-login/issues) on Github
 
 ## MIT License
 

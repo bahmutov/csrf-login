@@ -54,7 +54,9 @@ function csrfLogin(options) {
         }
         var csrf = $('input[name="' + CSRF_TOKEN_NAME + '"]').val();
         if (!csrf) {
-          return reject(new Error('Could not find hidden input for login'));
+          return reject(
+            new Error('Could not find hidden input for login at ' + url)
+          );
         }
 
         var pageInfo = {
