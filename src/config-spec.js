@@ -20,7 +20,7 @@ describe('config', function () {
     nconf
       .env()
       .argv()
-      .defaults({ foo: 'foo' });
+      .defaults({foo: 'foo'});
 
     la(nconf.get('foo') === 'foo',
       'uses default foo value', nconf.get('foo'));
@@ -34,7 +34,7 @@ describe('config', function () {
     nconf
       .env()
       .argv()
-      .defaults({ foo: 'foo' });
+      .defaults({foo: 'foo'});
 
     la(nconf.get('foo') === 'bar',
       'overriden value', nconf.get('foo'));

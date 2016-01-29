@@ -159,6 +159,6 @@ function csrfLogin(options) {
 module.exports = csrfLogin;
 
 if (!module.parent) {
-  csrfLogin({ foo: 'bar' })
+  csrfLogin({foo: 'bar'})
     .catch(console.error);
 }
