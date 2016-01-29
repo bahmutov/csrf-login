@@ -13,12 +13,13 @@ function csrfLogin(options) {
   var host = conf.get('host');
   la(check.unemptyString(host), 'missing host', host);
 
-  var username = options.email || options.username;
+  var username = options.email || options.username || options.USERNAME;
   if (!username) {
     return Promise.reject('Missing username');
   }
-  if (!options.password) {
-    return Promise.reject('Missing password for ' + options);
+  var password = options.password || options.PASSWORD;
+  if (!password) {
+    return Promise.reject('Missing password for ' + username);
   }
 
   var jar = request.jar();
@@ -147,8 +148,6 @@ function csrfLogin(options) {
     })
     .then(function (form) {
       log('Login to %s %s', host, loginUrl);
-      var username = options.username || options.email;
-      var password = options.password;
       return login(form, {
         username: username,
         password: password
