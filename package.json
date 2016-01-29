@@ -4,10 +4,13 @@
   "main": "src/csrf-login.js",
   "version": "0.0.0-semantic-release",
   "scripts": {
-    "test": "eslint src",
+    "test": "rocha src/*-spec.js",
+    "lint": "eslint src",
     "style": "jscs src/*.js --fix",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "issues": "git-issues"
+    "issues": "git-issues",
+    "commit": "commit-wizard",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,11 @@
   "bugs": {
     "url": "https://github.com/bahmutov/csrf-login/issues"
   },
+  "files": [
+    "src/*.js",
+    "src/*.json",
+    "!src/*-spec.js"
+  ],
   "homepage": "https://github.com/bahmutov/csrf-login#readme",
   "dependencies": {
     "bluebird": "2.9.34",
@@ -43,7 +51,8 @@
     "eslint": "1.1.0",
     "git-issues": "1.2.0",
     "jscs": "2.1.0",
-    "pre-git": "0.6.2",
+    "pre-git": "3.3.0",
+    "rocha": "2.0.0",
     "semantic-release": "^4.3.5"
   },
   "pre-commit": [
@@ -61,6 +70,21 @@
     },
     "globals": {
       "la": true
+    }
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": ["simple"],
+      "pre-commit": [
+        "npm run lint",
+        "npm run style",
+        "npm test"
+      ],
+      "pre-push": [
+        "npm run size"
+      ],
+      "post-commit": [],
+      "post-merge": []
     }
   }
 }
