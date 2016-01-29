@@ -39,11 +39,11 @@
   "homepage": "https://github.com/bahmutov/csrf-login#readme",
   "dependencies": {
     "bluebird": "2.9.34",
-    "check-more-types": "1.8.2",
+    "check-more-types": "2.10.0",
     "cheerio": "0.19.0",
     "debug": "2.2.0",
     "first-existing": "1.0.0",
-    "lazy-ass": "0.5.8",
+    "lazy-ass": "1.3.0",
     "nconf": "0.7.2",
     "request": "2.60.0"
   },
@@ -52,6 +52,7 @@
     "git-issues": "1.2.0",
     "jscs": "2.1.0",
     "pre-git": "3.3.0",
+    "really-need": "1.9.0",
     "rocha": "2.0.0",
     "semantic-release": "^4.3.5"
   },
@@ -74,7 +75,9 @@
   },
   "config": {
     "pre-git": {
-      "commit-msg": ["simple"],
+      "commit-msg": [
+        "simple"
+      ],
       "pre-commit": [
         "npm run lint",
         "npm run style",

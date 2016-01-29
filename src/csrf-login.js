@@ -1,17 +1,17 @@
-require('lazy-ass');
+var la = require('lazy-ass');
 var check = require('check-more-types');
 
 var log = require('debug')('csrf');
-var conf = require('./config');
-var host = conf.get('host');
-la(check.unemptyString(host), 'missing host', host);
-
 var join = require('path').join;
 var request = require('request');
 var Promise = require('bluebird');
 
 function csrfLogin(options) {
   options = options || {};
+
+  var conf = require('./config')(options);
+  var host = conf.get('host');
+  la(check.unemptyString(host), 'missing host', host);
 
   var username = options.email || options.username;
   if (!username) {
@@ -158,3 +158,7 @@ function csrfLogin(options) {
 
 module.exports = csrfLogin;
 
+if (!module.parent) {
+  csrfLogin({ foo: 'bar' })
+    .catch(console.error);
+}

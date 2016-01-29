@@ -65,6 +65,19 @@ csrfLogin({
 To get username and password from the user, you can use 
 [get-username-and-password](https://github.com/bahmutov/get-username-and-password).
 
+## Passing options
+
+Instead of a JSON file, you can pass options as an object
+
+```js
+var csrfLogin = require('csrf-login');
+csrfLogin({
+  host: 'https://server.com',
+  username: username,
+  password: password
+})
+```
+
 ## Returned object
 
 The returned object `info` has several properties
