@@ -160,6 +160,9 @@ module, and you can enable the request debug logging
 
     DEBUG=csrf NODE_DEBUG=request node client.js
 
+There is a scrip [demo/demo.js](demo/demo.js) you can use to quickly test the login
+feature.
+
 ## Optional Configuration
 
 By default, a form is looked up by Id and the submitted login form fields are expected to be named `email` and `password`. You can override these defaults in the config using the `loginFormSelector`, `loginUsernameField`, and `loginPasswordField`.

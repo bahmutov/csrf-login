@@ -5,7 +5,7 @@
   "version": "0.0.0-semantic-release",
   "scripts": {
     "test": "rocha src/*-spec.js",
-    "lint": "eslint src",
+    "lint": "eslint src demo",
     "style": "jscs src/*.js --fix",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "issues": "git-issues",
@@ -34,7 +34,8 @@
   "files": [
     "src/*.js",
     "src/*.json",
-    "!src/*-spec.js"
+    "!src/*-spec.js",
+    "demo/*.js"
   ],
   "homepage": "https://github.com/bahmutov/csrf-login#readme",
   "dependencies": {
