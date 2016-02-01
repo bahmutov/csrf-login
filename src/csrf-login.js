@@ -131,6 +131,10 @@ function csrfLogin(options) {
           console.error('Could not login', response.statusCode, response.statusMessage);
           return reject(new Error(response.statusCode + ': ' + response.statusMessage));
         }
+
+        log('success login');
+        log('jar', request.__jar);
+
         resolve({
           request: request,
           requestAsync: requestAsync,
