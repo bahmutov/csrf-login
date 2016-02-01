@@ -155,6 +155,11 @@ If you need to debug the login process, run the module with debug logging option
 
     DEBUG=csrf node client.js
 
+Under the hood, csrf-login is using [request](https://www.npmjs.com/package/request)
+module, and you can enable the request debug logging
+
+    DEBUG=csrf NODE_DEBUG=request node client.js
+
 ## Optional Configuration
 
 By default, a form is looked up by Id and the submitted login form fields are expected to be named `email` and `password`. You can override these defaults in the config using the `loginFormSelector`, `loginUsernameField`, and `loginPasswordField`.
