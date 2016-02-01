@@ -86,7 +86,7 @@ The returned object `info` has several properties
 csrfLogin(user)
   .then(function (info) {
     console.log(Object.keys(info))
-    // [ 'request', 'requestAsync', 'response', 'config' ]
+    // [ 'request', 'requestAsync', 'response', 'config', 'jar' ]
   })
 ```
 
@@ -143,6 +143,11 @@ csrfLogin()
     console.log('logged into', info.get('host'));
   });
 ```
+
+### info.jar
+
+The [cookie jar](https://www.npmjs.com/package/request#examples) after the login. 
+Will contain session / auth cookies for requests.
 
 ## Debugging
 

@@ -135,7 +135,8 @@ function csrfLogin(options) {
           request: request,
           requestAsync: requestAsync,
           response: response,
-          config: conf
+          config: conf,
+          jar: request.__jar
         });
       });
     });
