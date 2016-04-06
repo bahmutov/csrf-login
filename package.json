@@ -40,7 +40,7 @@
   "homepage": "https://github.com/bahmutov/csrf-login#readme",
   "dependencies": {
     "bluebird": "2.9.34",
-    "check-more-types": "2.10.0",
+    "check-more-types": "2.18.0",
     "cheerio": "0.19.0",
     "debug": "2.2.0",
     "first-existing": "1.0.0",
