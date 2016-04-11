@@ -10,7 +10,8 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "issues": "git-issues",
     "commit": "commit-wizard",
-    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";"
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
+    "demo-server": "node demo/server.js"
   },
   "repository": {
     "type": "git",
@@ -50,12 +51,16 @@
   },
   "devDependencies": {
     "eslint": "1.1.0",
+    "express": "4.13.4",
+    "express-session": "1.13.0",
     "git-issues": "1.2.0",
     "jscs": "2.1.0",
+    "morgan": "1.7.0",
     "pre-git": "3.3.0",
     "really-need": "1.9.0",
     "rocha": "2.0.0",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "^4.3.5",
+    "session-file-store": "0.2.0"
   },
   "pre-commit": [
     "npm test",
