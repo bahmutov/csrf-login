@@ -8,6 +8,10 @@ app.use(require('morgan')('dev'));
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/views');
+app.locals.pretty = true;
+
 app.use(session({
   name: 'server-session-cookie-id',
   secret: 'my express secret',
@@ -18,11 +22,9 @@ app.use(session({
 
 var csurf = require('csurf');
 var csrfProtection = csurf();
-app.get('/form', csrfProtection, function(req, res) {
-  // pass the csrfToken to the view
-  // res.send('send', { csrfToken: req.csrfToken() })
-  res.send('form');
+app.get('/login', csrfProtection, function(req, res) {
   console.log('csrf token', req.csrfToken());
+  res.render('login', { csrfToken: req.csrfToken() });
 });
 
 app.use(function printSession(req, res, next) {

@@ -59,6 +59,7 @@
     "jscs": "2.1.0",
     "morgan": "1.7.0",
     "pre-git": "3.3.0",
+    "pug": "2.0.0-alpha3",
     "really-need": "1.9.0",
     "rocha": "2.0.0",
     "semantic-release": "^4.3.5",
