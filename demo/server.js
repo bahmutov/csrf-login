@@ -20,7 +20,13 @@ app.use(function printSession(req, res, next) {
 });
 
 app.get('/', function (req, res) {
-  res.send('hi there');
+  if (typeof req.session.views === 'undefined') {
+    req.session.views = 1;
+  }
+  res.send({
+    text: 'hi there',
+    views: req.session.views
+  });
 });
 var server = app.listen(3000, function () {
   var host = server.address().address;
