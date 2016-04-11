@@ -178,6 +178,13 @@ By default, a form is looked up by Id and the submitted login form fields are ex
 }
 ```
 
+## Demo
+
+I have coded a small demo server, you can start it manually using `npm run demo-server`
+then open `localhost:3000`, `localhost:3000/login` pages. You can also run unit tests against
+the demo server and see how the token is captured and used in the unit tests using 
+`npm run demo-test` command.
+
 ## Small print
 
 Author: Gleb Bahmutov &copy; 2015
