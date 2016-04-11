@@ -4,14 +4,17 @@
   "main": "src/csrf-login.js",
   "version": "0.0.0-semantic-release",
   "scripts": {
-    "test": "rocha src/*-spec.js",
-    "lint": "eslint src demo",
+    "test": "npm run unit && npm run demo-test",
+    "unit": "rocha src/*-spec.js",
+    "pretest": "npm run style && npm run lint",
+    "lint": "eslint src",
     "style": "jscs src/*.js --fix",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "issues": "git-issues",
     "commit": "commit-wizard",
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
-    "demo-server": "node demo/server.js"
+    "demo-server": "node demo/server.js",
+    "demo-test": "mocha demo/*-spec.js"
   },
   "repository": {
     "type": "git",
@@ -57,13 +60,15 @@
     "git-issues": "1.2.0",
     "helmet": "1.3.0",
     "jscs": "2.1.0",
+    "mocha": "2.4.5",
     "morgan": "1.7.0",
     "pre-git": "3.3.0",
     "pug": "2.0.0-alpha3",
     "really-need": "1.9.0",
     "rocha": "2.0.0",
     "semantic-release": "^4.3.5",
-    "session-file-store": "0.2.0"
+    "session-file-store": "0.2.0",
+    "supertest": "1.2.0"
   },
   "pre-commit": [
     "npm test",
