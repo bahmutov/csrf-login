@@ -19,15 +19,22 @@ app.use(function printSession(req, res, next) {
   return next();
 });
 
-app.get('/', function (req, res) {
+app.get('/', function (req, res, next) {
   if (typeof req.session.views === 'undefined') {
-    req.session.views = 1;
+    req.session.views = 0;
   }
+  req.session.views += 1;
+  return next();
+})
+
+app.get('/', function (req, res) {
+  // res.send('Hi there, session views count ' + req.session.views);
   res.send({
     text: 'hi there',
     views: req.session.views
   });
 });
+
 var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
