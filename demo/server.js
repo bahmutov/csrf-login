@@ -2,6 +2,8 @@
 
 // demo server for showing CSRF login
 var app = require('express')();
+var helmet = require('helmet');
+app.use(helmet())
 app.use(require('morgan')('dev'));
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
@@ -13,6 +15,15 @@ app.use(session({
   resave: true,
   store: new FileStore()
 }));
+
+var csurf = require('csurf');
+var csrfProtection = csurf();
+app.get('/form', csrfProtection, function(req, res) {
+  // pass the csrfToken to the view
+  // res.send('send', { csrfToken: req.csrfToken() })
+  res.send('form');
+  console.log('csrf token', req.csrfToken());
+});
 
 app.use(function printSession(req, res, next) {
   console.log('req.session', req.session);
