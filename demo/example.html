@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Demo login form</h1>
+    <p>CSRF token is mC5xkDZW-X9GyTxAkYSbFN2_YejfWElWZtnU</p>
+    <p>please login (enter "user@company.com" and "test")
+      <form id="loginform" method="POST" action="/login/">
+        <input type="hidden" name="csrfmiddlewaretoken" value="mC5xkDZW-X9GyTxAkYSbFN2_YejfWElWZtnU">
+        <input type="email" name="email" placeholder="email" requried>
+        <input type="password" name="password" placeholder="password" requried>
+        <button type="submit">Submit</button>
+      </form>
+    </p>
+  </body>
+</html>
