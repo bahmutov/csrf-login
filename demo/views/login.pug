@@ -5,3 +5,9 @@ html(lang="en")
   body
     h1 Demo login form
     p CSRF token is #{ csrfToken }
+    p please login
+      form#loginform(method="POST", action="/login/")
+        input(type="hidden", name="csrfmiddlewaretoken", value=csrfToken)
+        input(type="email", name="email", placeholder="email", requried)
+        input(type="password", name="password", placeholder="password", requried)
+        button(type="submit") Submit
