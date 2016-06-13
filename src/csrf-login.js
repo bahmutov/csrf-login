@@ -4,7 +4,6 @@ var check = require('check-more-types');
 var log = require('debug')('csrf');
 var join = require('path').join;
 var request = require('request');
-var Promise = require('bluebird');
 var cheerio = require('cheerio');
 
 function getLoginForm(conf, body) {
