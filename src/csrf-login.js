@@ -177,8 +177,10 @@ function csrfLogin(options) {
 
   var loginUrl = conf.get('loginPath');
   return getCsrf(loginUrl)
-    .tap(function (form) {
+    .then(function (form) {
+      // TODO would be nice to wrap this function in .tap
       log('csrf info', form);
+      return form;
     })
     .then(function (form) {
       log('Login to %s %s', host, loginUrl);
