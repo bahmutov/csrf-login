@@ -9,9 +9,15 @@ function getConfig(options) {
 
   var findFirst = require('first-existing');
   var candidateFiles = ['.csrf.json', 'csrf.json', '.csrf-login.json', 'csrf-login.json'];
-  var foundFile = findFirst.apply(null, candidateFiles);
+
+  var foundFile = findFirst(process.cwd(), candidateFiles);
+  if (!foundFile) {
+    foundFile = findFirst(__dirname, candidateFiles, true);
+  }
   if (foundFile) {
     nconf.file(foundFile);
+  } else {
+    console.error('warning: Could not find csrf settings file');
   }
 
   var join = require('path').join;
