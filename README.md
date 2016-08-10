@@ -35,7 +35,7 @@ Install and use under Node
 
     npm install csrf-login --save
 
-Create a new file `csrf.json` in the current working folder, place the following custom parameters 
+Create a new file `csrf.json` in the current working folder, place the following custom parameters
 into this configuration file. For example,
 
 ```json
@@ -58,11 +58,11 @@ csrfLogin({
     password: password
 }).then(function (info) {
   // info = { request, requestAsync, response, conf };
-  return info.requestAsync('/api/foo', { some: params });      
+  return info.requestAsync('/api/foo', { some: params });
 }).then(function (data) { });
 ```
 
-To get username and password from the user, you can use 
+To get username and password from the user, you can use
 [get-username-and-password](https://github.com/bahmutov/get-username-and-password).
 
 ## Passing options
@@ -75,6 +75,16 @@ csrfLogin({
   host: 'https://server.com',
   username: username,
   password: password
+})
+```
+
+You can also pass folder with the config file, for example if the
+`csrf.json` file is in the same as the caller source file
+
+```js
+var csrfLogin = require('csrf-login');
+csrfLogin({
+  folder: __dirname
 })
 ```
 
@@ -146,7 +156,7 @@ csrfLogin()
 
 ### info.jar
 
-The [cookie jar](https://www.npmjs.com/package/request#examples) after the login. 
+The [cookie jar](https://www.npmjs.com/package/request#examples) after the login.
 Will contain session / auth cookies for requests.
 
 ## Debugging
@@ -182,7 +192,7 @@ By default, a form is looked up by Id and the submitted login form fields are ex
 
 I have coded a small demo server, you can start it manually using `npm run demo-server`
 then open `localhost:3000`, `localhost:3000/login` pages. You can also run unit tests against
-the demo server and see how the token is captured and used in the unit tests using 
+the demo server and see how the token is captured and used in the unit tests using
 `npm run demo-test` command.
 
 ## Small print

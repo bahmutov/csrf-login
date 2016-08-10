@@ -1,3 +1,6 @@
+'use strict';
+
+var debug = require('debug')('csrf');
 var nconf = require('nconf');
 
 function getConfig(options) {
@@ -12,9 +15,17 @@ function getConfig(options) {
 
   var foundFile = findFirst(process.cwd(), candidateFiles);
   if (!foundFile) {
+    debug('could not find config file in', process.cwd());
+    debug('searching in', __dirname);
     foundFile = findFirst(__dirname, candidateFiles, true);
   }
+  if (!foundFile && options.folder) {
+    debug('looking for config file in', options.folder);
+    foundFile = findFirst(options.folder, candidateFiles);
+  }
+
   if (foundFile) {
+    debug('found config file', foundFile);
     nconf.file(foundFile);
   } else {
     console.error('warning: Could not find csrf settings file');
