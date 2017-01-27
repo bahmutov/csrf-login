@@ -121,7 +121,7 @@ function csrfLogin(options) {
     var options = {
       url: loginUrl,
       formData: form,
-      followRedirect: true,
+      followAllRedirects: true,
       headers: {
         referer: host
       }
