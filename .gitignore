@@ -1,3 +1,4 @@
 node_modules/
 .rocha.json
 sessions/
+npm-debug.log

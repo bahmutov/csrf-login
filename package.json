@@ -6,9 +6,8 @@
   "scripts": {
     "test": "npm run unit && npm run demo-test",
     "unit": "rocha src/*-spec.js",
-    "pretest": "npm run style && npm run lint",
-    "lint": "eslint src",
-    "style": "jscs src/*.js --fix",
+    "pretest": "npm run lint",
+    "lint": "standard --verbose --fix src/*.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "issues": "git-issues",
     "commit": "commit-wizard",
@@ -54,7 +53,6 @@
   "devDependencies": {
     "body-parser": "1.15.0",
     "csurf": "1.8.3",
-    "eslint": "1.1.0",
     "express": "4.13.4",
     "express-session": "1.13.0",
     "git-issues": "1.2.0",
@@ -68,33 +66,19 @@
     "rocha": "2.0.0",
     "semantic-release": "^4.3.5",
     "session-file-store": "0.2.0",
+    "standard": "8.6.0",
     "supertest": "1.2.0"
   },
   "pre-commit": [
-    "npm test",
-    "npm run style"
+    "npm test"
   ],
   "post-commit": "npm version",
-  "eslintConfig": {
-    "env": {
-      "node": true
-    },
-    "rules": {
-      "no-unused-expressions": 2,
-      "no-undef": 2
-    },
-    "globals": {
-      "la": true
-    }
-  },
   "config": {
     "pre-git": {
       "commit-msg": [
         "simple"
       ],
       "pre-commit": [
-        "npm run lint",
-        "npm run style",
         "npm test"
       ],
       "pre-push": [
