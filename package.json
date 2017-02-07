@@ -42,13 +42,13 @@
   ],
   "homepage": "https://github.com/bahmutov/csrf-login#readme",
   "dependencies": {
-    "check-more-types": "2.23.0",
+    "check-more-types": "^2.23.0",
     "cheerio": "^0.22.0",
-    "debug": "2.6.0",
+    "debug": "^2.6.0",
     "first-existing": "^1.2.0",
-    "lazy-ass": "1.5.0",
-    "nconf": "0.8.4",
-    "request": "2.79.0"
+    "lazy-ass": "^1.5.0",
+    "nconf": "^0.8.4",
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "body-parser": "1.16.0",
