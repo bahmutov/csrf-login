@@ -79,13 +79,21 @@ csrfLogin({
 ```
 
 You can also pass folder with the config file, for example if the
-`csrf.json` file is in the same as the caller source file
+`csrf.json` file is in the same as the caller source file. The options
+from the loaded file will combined with additional options.
 
 ```js
 var csrfLogin = require('csrf-login');
 csrfLogin({
-  folder: __dirname
+  folder: __dirname,
+  password: password
 })
+```
+
+You can also pass options via environment variables
+
+```sh
+USERNAME=me PASSWORD=test123 npm test
 ```
 
 ## Returned object

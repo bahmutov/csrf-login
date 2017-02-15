@@ -48,11 +48,12 @@ function csrfLogin (options) {
 
   var username = options.email || options.username || options.USERNAME
   if (!username) {
-    return Promise.reject('Missing username')
+    return Promise.reject('Missing username, see https://github.com/bahmutov/csrf-login#passing-options')
   }
   var password = options.password || options.PASSWORD
   if (!password) {
-    return Promise.reject('Missing password for ' + username)
+    return Promise.reject('Missing password for ' + username +
+      ', see https://github.com/bahmutov/csrf-login#passing-options')
   }
 
   var jar = request.jar()
